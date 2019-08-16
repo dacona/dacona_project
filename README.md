@@ -3,7 +3,7 @@ This is the implementation (PyTorch Version) of DaConA which is submitted to Big
 
 All codes are written by Python 3.6.
 
-Requirements: numpy, pytorch(>=0.4)
+Requirements: numpy, pytorch(>=0.4) with CUDA
 
 ## Abstract
 Given a sparse rating matrix and an auxiliary matrix of users or items, how can we effectively leverage such matrices and predict missing values in the rating matrix accurately? Predicting rating values is a crucial problem in recommendation because users want to be served items that they will give high ratings. Many previous studies proved that utilizing the additional information with rating data is helpful to improve the performance. 
