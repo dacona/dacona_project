@@ -1,3 +1,6 @@
+"""
+Data Context Adaptation for Accurate Recommendation with Additional Information
+"""
 TYPE_USER = 'user'
 TYPE_ITEM = 'item'
 TYPES = [TYPE_USER, TYPE_ITEM]
