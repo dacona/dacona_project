@@ -1,15 +1,20 @@
 # DaConA
-This is the implementation (PyTorch Version) of DaConA which is submitted to BigData19.
+This project is a PyTorch implementation of "Data Context Adaptation for Accurate Recommendation with Additional Information" (DaConA), which is submitted to Samsung Humantech 2019.
 
-All codes are written by Python 3.6.
+This paper proposes a novel approach for data context-aware recommendation, where additional information is given as well as ratings.
 
 Requirements: numpy, pytorch(>=0.4) with CUDA
 
 ## Abstract
-Given a sparse rating matrix and an auxiliary matrix of users or items, how can we effectively leverage such matrices and predict missing values in the rating matrix accurately? Predicting rating values is a crucial problem in recommendation because users want to be served items that they will give high ratings. Many previous studies proved that utilizing the additional information with rating data is helpful to improve the performance. 
-However, existing methods are limited in that 1) they have restricted capability of expressing independence information of users or items, 2) they do not consider the fact that data contexts of rating auxiliary matrices are different, and 3) they assume the relation between a user and an item is linear. 
+Given a sparse rating matrix and an auxiliary matrix of users or items, how can we accurately predict missing ratings considering different data contexts of entities? Many previous studies proved that utilizing the additional information with rating data is helpful to improve the performance. However, existing methods are limited in that 1) they ignore the fact that data contexts of rating and auxiliary matrices are different, 2) they have restricted capability of expressing independence information of users or items, and 3) they assume the relation between a user and an item is linear.
 
-In this paper, we propose DaConA, a neural network based method for recommendation with a rating matrix and an auxiliary matrix. DaConA is designed with the following three main ideas. First, DaConA represents each entity with a latent interaction vector and latent independence vector. Unlike previous methods, both of the two vectors are not limited in size. Second, we propose a data context adaptation layer to extract appropriate features for different data contexts. Lastly, while previous matrix factorization based methods predict missing values through the inner-product of latent vectors, DaConA learns a non-linear function of them via a neural network. We show that DaConA is a generalized algorithm including the standard matrix factorization and the collective matrix factorization as special cases. Through extensive experiments on real-world datasets, we show that DaConA provides the state-of-the-art performance in real-world datasets.
+We propose DaConA, a neural network based method for recommendation with a rating matrix and an auxiliary matrix. DaConA is designed with the following three main ideas. First, we propose a data context adaptation layer to extract pertinent features for different data contexts. Second, DaConA represents each entity with latent interaction vector and latent independence vector. Unlike previous methods, both of the two vectors are not limited in size. Lastly, while previous matrix factorization based methods predict missing values through the inner-product of latent vectors, DaConA learns a non-linear function of them via a neural network. We show that DaConA is a generalized algorithm including the standard matrix factorization and the collective matrix factorization as special cases. Through comprehensive experiments on real-world datasets, we show that DaConA provides the state-of-the-art accuracy. 
+
+## Prerequisites 
+- [Python 3.6](https://www.python.org/downloads/release/python-360/)
+- [PyTorch(>=0.4)](https://pytorch.org)
+- [Click(>=7.0)](https://click.palletsprojects.com)
+- [NumPy(>=1.14)](https://numpy.org)
 
 ## How to Run
   - Run (in `./src/` directory): `python main.py  [Options]`
