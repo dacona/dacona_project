@@ -1,0 +1,4 @@
+# You must install CUDA: see pytorch.org
+torch>=0.4
+click>=7.0
+numpy>=1.14
