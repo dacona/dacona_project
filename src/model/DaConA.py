@@ -1,3 +1,6 @@
+"""
+Data Context Adaptation for Accurate Recommendation with Additional Information
+"""
 import itertools
 import math
 import random
@@ -10,14 +13,33 @@ from model import *
 
 
 def circle_batch(data, batch_size):
+    """
+    Make the data iterable with size of [batch_size]
+    :param data: list of dataset indices
+    :param batch_size: size of batch
+    :return: batch generator
+    """
     it = itertools.cycle(data)
     while True:
         yield list(itertools.islice(it, batch_size))
+
 
 class DaConA(torch.nn.Module):
     def __init__(self,
                  n_users, n_items, n_aux, aux_type,
                  dim_l, dim_s, n_layers, lr, decay):
+        """
+        Define DaConA network
+        :param n_users: number of users
+        :param n_items: number of items
+        :param n_aux: number of auxiliary entities
+        :param aux_type: type of auxiliary matrix (user or item)
+        :param dim_l: dimension of the last layer
+        :param dim_s: dimension of latent independent factor
+        :param n_layers: number of layers
+        :param lr: learning rate
+        :param decay: coefficient of decaying weight
+        """
         super(DaConA, self).__init__()
         self.n_users = n_users
         self.n_items = n_items
@@ -94,6 +116,13 @@ class DaConA(torch.nn.Module):
         torch.nn.init.xavier_normal_(self.f_yorz_reg.weight)
 
     def forward(self, matrix_type, rows, cols):
+        """
+        Given indices of rows and cols, infer the results (ratings) using the network
+        :param matrix_type: type of matrix (main or aux)
+        :param rows: indices of rows
+        :param cols: indices of columns
+        :return: ratings
+        """
         if matrix_type == MAIN_MATRIX:
             avg = Variable(torch.cuda.FloatTensor(
                     rows.size()[0]).fill_(self.global_avg_main),
@@ -161,6 +190,20 @@ class DaConA(torch.nn.Module):
     def do_learn(self,
                  Dtrain, Dtest, Daux, n_epochs, batch_size,
                  alpha, min, max, early_stop, stop_iter):
+        """
+        Train DaConA model
+        :param Dtrain: training data array
+        :param Dtest: test data array
+        :param Daux: auxiliary data array
+        :param n_epochs: number of epochs
+        :param batch_size: size of batch
+        :param alpha: balance parameter between gradients from main-matrix and aux-matrix
+        :param min: minimum rating value
+        :param max: maximum rating value
+        :param early_stop: whether to stop early
+        :param stop_iter: iteration to stop (it is needed only when early_stop is True)
+        :return: None
+        """
         min_test_rmse = math.inf
         min_test_print = ''
         iter = 0
