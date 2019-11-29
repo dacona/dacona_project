@@ -1,6 +1,5 @@
 # DaConA
 This project is a PyTorch implementation of "Data Context Adaptation for Accurate Recommendation with Additional Information" (DaConA), which is submitted to Samsung Humantech 2019.
-
 This paper proposes a novel approach for data context-aware recommendation, where additional information is given as well as ratings.
 
 ## Abstract
