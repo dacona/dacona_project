@@ -3,8 +3,6 @@ This project is a PyTorch implementation of "Data Context Adaptation for Accurat
 
 This paper proposes a novel approach for data context-aware recommendation, where additional information is given as well as ratings.
 
-Requirements: numpy, pytorch(>=0.4) with CUDA
-
 ## Abstract
 Given a sparse rating matrix and an auxiliary matrix of users or items, how can we accurately predict missing ratings considering different data contexts of entities? Many previous studies proved that utilizing the additional information with rating data is helpful to improve the performance. However, existing methods are limited in that 1) they ignore the fact that data contexts of rating and auxiliary matrices are different, 2) they have restricted capability of expressing independence information of users or items, and 3) they assume the relation between a user and an item is linear.
 
