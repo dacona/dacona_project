@@ -1,4 +1,6 @@
-import os
+"""
+Data Context Adaptation for Accurate Recommendation with Additional Information
+"""
 import random
 import time
 
@@ -10,25 +12,15 @@ from model import *
 from model import DaConA
 
 
-def set_path(path):
-    """
-    Set the path to store the results.
-    """
-    path = os.path.realpath(path)
-    if not os.path.exists(path):
-        os.makedirs(path, exist_ok=True)
-    return path
-
-
 def read_dataset_origin(trn_file, test_file, aux_file, type):
-    '''
-    read dataset
+    """
+    Read the given datasets and convert them to numpy-arrays and dictionaries
     :param trn_file: Training file
     :param test_file: Test file
     :param aux_file: Auxiliary file
-    :param type: Type of the auxiliary file (user/item)
-    :return: Data-frames for trn, val, test, aux files and dictionaries for user, item, aux
-    '''
+    :param type: Type of the auxiliary file (user or item)
+    :return: Numpy-arrays of trn, val, test, aux and dictionaries for user, item, aux
+    """
     users = np.array([], dtype=np.int)
     items = np.array([], dtype=np.int)
 
@@ -79,6 +71,11 @@ def read_dataset_origin(trn_file, test_file, aux_file, type):
 
 
 def make_dictionary(array):
+    """
+    Make dictionary for the given array
+    :param array: Numpy array to be changed as a dictionary
+    :return: A dictionary that made from the given array
+    """
     dict={}
     array = array.astype(int)
     for i in range(array.shape[0]):
@@ -109,7 +106,12 @@ def make_dictionary(array):
 @click.option('--stop_iter', type=int, default=20)
 def main(dataset, datapath, aux_type, dim_l, dim_s, n_layers, batch_size,
          lr, decay, alpha, epoch, seed, early_stop, stop_iter):
-
+    """
+    Process:
+    1) Read a dataset
+    2) Define a model with given hyper-parameters
+    3) Than the model
+    """
     # set random seed
     if seed is None:
         seed = random.randint(1, 10000)
